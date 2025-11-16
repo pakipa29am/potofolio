@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Muhamad Syifa AM | Personal Landing Page</title>
+
+  <!-- Optional: Google Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #050816;
+      color: #e5e7eb;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: rgba(5, 8, 22, 0.85);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-logo span {
+      color: #38bdf8;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      opacity: 0.85;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: #38bdf8;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 5rem 0 4rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 3.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3rem);
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-title span {
+      color: #38bdf8;
+    }
+
+    .hero-subtitle {
+      font-size: 0.98rem;
+      color: #cbd5f5;
+      max-width: 40rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-meta {
+      font-size: 0.85rem;
+      color: #9ca3af;
+      margin-bottom: 1.75rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border 0.15s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0ea5e9, #38bdf8, #22d3ee);
+      color: #0b1120;
+      font-weight: 600;
+      box-shadow: 0 20px 40px rgba(56, 189, 248, 0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 24px 40px rgba(56, 189, 248, 0.35);
+    }
+
+    .btn-ghost {
+      background: rgba(15, 23, 42, 0.7);
+      border-color: rgba(148, 163, 184, 0.4);
+      color: #e5e7eb;
+    }
+
+    .btn-ghost:hover {
+      border-color: #38bdf8;
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .hero-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .hero-social a {
+      padding: 0.4rem 0.9rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.4);
+    }
+
+    .hero-social a:hover {
+      border-style: solid;
+      border-color: #38bdf8;
+      color: #e5e7eb;
+    }
+
+    .hero-card {
+      position: relative;
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.15), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.2), transparent 55%),
+                  #020617;
+      border-radius: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 1.75rem;
+      box-shadow: 0 24px 60px rgba(15, 23, 42, 0.95);
+      overflow: hidden;
+    }
+
+    .hero-card-tag {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #9ca3af;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-card-sub {
+      font-size: 0.8rem;
+      color: #c4c9d4;
+      margin-bottom: 0.9rem;
+    }
+
+    .hero-card-pill {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+    }
+
+    .pill {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+    }
+
+    .hero-card-footer {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      border-top: 1px dashed rgba(148, 163, 184, 0.4);
+      padding-top: 0.75rem;
+      margin-top: 0.75rem;
+    }
+
+    .glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 20% 0%, rgba(56, 189, 248, 0.25), transparent 55%);
+      opacity: 0.65;
+      mix-blend-mode: screen;
+      pointer-events: none;
+    }
+
+    /* Sections */
+    section {
+      padding: 3.5rem 0;
+      border-top: 1px solid rgba(15, 23, 42, 0.95);
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #9ca3af;
+      margin-bottom: 0.3rem;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: #9ca3af;
+      max-width: 28rem;
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2.25rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-text p {
+      font-size: 0.92rem;
+      margin-bottom: 0.75rem;
+      color: #d1d5db;
+    }
+
+    .about-list {
+      list-style: none;
+      margin-top: 1rem;
+    }
+
+    .about-list li {
+      font-size: 0.86rem;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+      color: #9ca3af;
+    }
+
+    .about-list li::before {
+      content: "•";
+      color: #38bdf8;
+      margin-top: 0.1rem;
+    }
+
+    .about-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1.1rem;
+      padding: 1.5rem;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+
+    .about-card h4 {
+      font-size: 0.9rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+      font-size: 0.75rem;
+    }
+
+    .about-tag {
+      padding: 0.2rem 0.55rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .skill-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 1rem;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      padding: 1.2rem 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    .skill-title {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+
+    .skill-desc {
+      color: #9ca3af;
+      margin-bottom: 0.75rem;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      font-size: 0.75rem;
+    }
+
+    .skill-tag {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    /* Blog / Projects */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .post-list {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+
+    .post-item {
+      padding: 0.85rem 0;
+      border-bottom: 1px dashed rgba(51, 65, 85, 0.9);
+    }
+
+    .post-item-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .post-item-title span {
+      font-weight: 500;
+    }
+
+    .post-date {
+      font-size: 0.75rem;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    .post-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+    }
+
+    .blog-side {
+      font-size: 0.86rem;
+      color: #9ca3af;
+    }
+
+    .blog-side strong {
+      color: #e5e7eb;
+    }
+
+    .blog-side a {
+      color: #38bdf8;
+    }
+
+    /* Contact */
+    .contact-card {
+      background: radial-gradient(circle at top, rgba(56, 189, 248, 0.12), transparent 60%),
+                  rgba(15, 23, 42, 0.97);
+      border-radius: 1.4rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      padding: 1.7rem 1.6rem;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.75rem;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-sub {
+      font-size: 0.86rem;
+      color: #9ca3af;
+      margin-bottom: 1rem;
+    }
+
+    .contact-info {
+      display: grid;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: #d1d5db;
+    }
+
+    .contact-info span {
+      color: #9ca3af;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .contact-social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+    }
+
+    .contact-pill {
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px dashed rgba(148, 163, 184, 0.55);
+    }
+
+    footer {
+      padding: 2rem 0 1.5rem;
+      font-size: 0.78rem;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    footer a {
+      color: #9ca3af;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="nav-logo">
+        MS<span>AM</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#about">Tentang</a>
+        <a href="#skills">Keahlian</a>
+        <a href="#blog">Blog & Project</a>
+        <a href="#contact">Kontak</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="container hero">
+        <div>
+          <div class="badge">
+            <span class="badge-dot"></span>
+            Tersambung dari kampung di Kulon Pulau Jawa
+          </div>
+
+          <h1 class="hero-title">
+            Muhamad Syifa <span>AM</span>
+          </h1>
+          <p class="hero-subtitle">
+            Orang kampung yang senang belajar teknologi, desain, dan multimedia.
+            Menulis tutorial aplikasi, catatan kampus, serta berbagai eksperimen digital.
+          </p>
+          <p class="hero-meta">
+            Blog utama: <strong>pakipa29am.blogspot.com</strong> · Aktif menulis sejak 2013
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://pakipa29am.blogspot.com" target="_blank" rel="noopener">
+              Lihat Blog Utama →
+            </a>
+            <a class="btn btn-ghost" href="#contact">
+              Hubungi Saya
+            </a>
+          </div>
+
+          <div class="hero-social">
+            <a href="https://www.facebook.com/stiven.g8" target="_blank" rel="noopener">Facebook</a>
+            <a href="https://www.instagram.com/pakipa29am" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://pakipa29am.blogspot.com" target="_blank" rel="noopener">Blogger</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Highlight Profil">
+          <div class="glow" aria-hidden="true"></div>
+          <div class="hero-card-tag">Profil Singkat</div>
+          <div class="hero-card-title">Teknologi · Desain · Multimedia</div>
+          <div class="hero-card-sub">
+            Belajar dan berbagi seputar software, desain grafis, dan pemrograman
+            dengan bahasa yang santai ala anak kampung.
+          </div>
+          <div class="hero-card-pill">
+            <span class="pill">Corel Draw & Desain Logo</span>
+            <span class="pill">Tutorial Software</span>
+            <span class="pill">Artikel Teknologi</span>
+            <span class="pill">Catatan Kuliah Informatika</span>
+          </div>
+          <div class="hero-card-footer">
+            <div>Berbasis pengalaman sehari-hari & tugas kampus.</div>
+            <div>Aktif menulis sejak 2013.</div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-kicker">Tentang Saya</div>
+          <h2 class="section-title">Orang kampung yang senang ngoprek teknologi</h2>
+          <p class="section-desc">
+            Profil singkat sebagai pemilik blog dan personal landing page.
+          </p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              Nama saya <strong>Muhamad Syifa Abdul Malik</strong>, biasa menulis sebagai
+              <strong>Muhamad Syifa AM</strong>. Tinggal di Kulon Pulau Jawa dan aktif mengisi
+              blog pribadi berisi tutorial software, tips desain, serta catatan kuliah seputar teknologi.
+            </p>
+            <p>
+              Blog dan konten yang saya buat ditujukan untuk teman-teman yang belajar teknologi
+              dari kampung tapi tetap ingin produktif dan up-to-date dengan dunia digital.
+            </p>
+            <p>
+              Gaya tulisan santai, banyak contoh langsung, dan berusaha fokus pada hal yang praktis
+              dan bisa langsung dipakai, mulai dari cara memakai aplikasi sampai tugas kampus.
+            </p>
+
+            <ul class="about-list">
+              <li>Fokus pada teknologi praktis: aplikasi, software, & tool sehari-hari.</li>
+              <li>Sharing seputar desain grafis sederhana dengan Corel Draw & multimedia.</li>
+              <li>Menuliskan hasil belajar dari jurusan Informatika & tugas kuliah.</li>
+              <li>Membantu pembaca yang baru mulai belajar komputer & internet.</li>
+            </ul>
+          </div>
+
+          <aside class="about-card">
+            <h4>Highlight Singkat</h4>
+            <p>
+              Blog pribadi bertema <strong>Teknologi, Software & Catatan Kampus</strong>
+              yang aktif sejak 2013 dan terus berkembang mengikuti kebutuhan dan pengalaman.
+            </p>
+            <div class="about-tags">
+              <span class="about-tag">Teknologi</span>
+              <span class="about-tag">Software</span>
+              <span class="about-tag">Corel Draw</span>
+              <span class="about-tag">Desain Logo</span>
+              <span class="about-tag">Multimedia</span>
+              <span class="about-tag">Pemrograman</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-kicker">Keahlian & Fokus</div>
+          <h2 class="section-title">Apa yang biasa saya kerjakan</h2>
+          <p class="section-desc">
+            Ringkasan area yang sering saya tulis dan pelajari.
+          </p>
+        </header>
+
+        <div class="skills-grid">
+          <article class="skill-card">
+            <div class="skill-title">Tutorial Software</div>
+            <div class="skill-desc">
+              Menulis panduan penggunaan aplikasi populer yang dipakai sehari-hari.
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Internet Download Manager</span>
+              <span class="skill-tag">KMPlayer</span>
+              <span class="skill-tag">Corel Draw</span>
+              <span class="skill-tag">Apps sehari-hari</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-title">Desain & Multimedia</div>
+            <div class="skill-desc">
+              Eksperimen desain sederhana untuk logo, wallpaper, dan kebutuhan visual lain.
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Desain Logo</span>
+              <span class="skill-tag">Wallpaper</span>
+              <span class="skill-tag">Corel Draw X6</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-title">Artikel Teknologi</div>
+            <div class="skill-desc">
+              Membahas teknologi, pemrograman, dan catatan tugas kuliah Informatika.
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Pemrograman</span>
+              <span class="skill-tag">Bahasa C++</span>
+              <span class="skill-tag">Catatan Kampus</span>
+            </div>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-title">Berbagi dari Kampung</div>
+            <div class="skill-desc">
+              Membuktikan bahwa belajar teknologi dari kampung pun bisa produktif dan bermanfaat.
+            </div>
+            <div class="skill-tags">
+              <span class="skill-tag">Self-learning</span>
+              <span class="skill-tag">Berbagi Pengalaman</span>
+              <span class="skill-tag">Kehidupan Kampung</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG / PROJECTS -->
+    <section id="blog">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-kicker">Blog & Tulisan</div>
+          <h2 class="section-title">Beberapa tulisan yang pernah saya buat</h2>
+          <p class="section-desc">
+            Contoh topik yang dibahas di blog pakipa29am.blogspot.com.
+          </p>
+        </header>
+
+        <div class="blog-grid">
+          <div>
+            <ul class="post-list">
+              <li class="post-item">
+                <div class="post-item-title">
+                  <span>How To Installing Corel Draw X6 With Crack</span>
+                  <span class="post-date">April 13, 2020</span>
+                </div>
+                <div class="post-meta">
+                  Tutorial instalasi Corel Draw X6 dan pengaturan awal untuk desain.
+                </div>
+              </li>
+
+              <li class="post-item">
+                <div class="post-item-title">
+                  <span>How to Make Wallpaper from a Logo</span>
+                  <span class="post-date">April 9, 2020</span>
+                </div>
+                <div class="post-meta">
+                  Cara mengubah logo menjadi wallpaper menarik dengan sentuhan sederhana.
+                </div>
+              </li>
+
+              <li class="post-item">
+                <div class="post-item-title">
+                  <span>How To Make The Simplest Logo With Corel Draw</span>
+                  <span class="post-date">April 9, 2020</span>
+                </div>
+                <div class="post-meta">
+                  Panduan membuat logo sederhana untuk pemula menggunakan Corel Draw.
+                </div>
+              </li>
+
+              <li class="post-item">
+                <div class="post-item-title">
+                  <span>Cara Absen dan Print S35 di Simpatika | Kemenag</span>
+                  <span class="post-date">April 5, 2020</span>
+                </div>
+                <div class="post-meta">
+                  Langkah-langkah praktis absen dan mencetak S35 di sistem Simpatika.
+                </div>
+              </li>
+
+              <li class="post-item">
+                <div class="post-item-title">
+                  <span>Artikel Tentang Teknologi & Pemrograman C++</span>
+                  <span class="post-date">Mei 26, 2017</span>
+                </div>
+                <div class="post-meta">
+                  Artikel tugas kuliah seputar bahasa pemrograman dan pengalaman belajar di Informatika.
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <aside class="blog-side">
+            <p>
+              Semua artikel lengkap bisa dibaca langsung di blog:
+              <br />
+              <strong><a href="https://pakipa29am.blogspot.com" target="_blank" rel="noopener">
+                pakipa29am.blogspot.com
+              </a></strong>
+            </p>
+            <p style="margin-top: 1rem;">
+              Landing page ini hanya menampilkan highlight singkat dalam tampilan yang lebih modern.
+              Untuk komentar, navigasi lengkap, dan arsip tulisan, silakan kunjungi blog utama.
+            </p>
+            <p style="margin-top: 1rem;">
+              Jika tertarik berkolaborasi, mengajak menulis, atau bekerja sama dalam proyek
+              yang berhubungan dengan teknologi, blog, atau konten digital, silakan hubungi saya
+              melalui kontak di bawah.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container">
+        <header class="section-header">
+          <div class="section-kicker">Kontak</div>
+          <h2 class="section-title">Mari Terhubung</h2>
+          <p class="section-desc">
+            Tertarik berdiskusi atau berkolaborasi? Silakan hubungi melalui salah satu kanal berikut.
+          </p>
+        </header>
+
+        <div class="contact-card">
+          <div>
+            <div class="contact-title">Terbuka untuk diskusi & kolaborasi</div>
+            <div class="contact-sub">
+              Baik itu soal teknologi dasar, software, desain sederhana, maupun konten blog.
+            </div>
+
+            <div class="contact-info">
+              <div>
+                <span>Berbasis</span><br />
+                Kulon Pulau Jawa · Indonesia
+              </div>
+              <div>
+                <span>Fokus</span><br />
+                Tutorial Software · Desain & Multimedia · Artikel Teknologi
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="contact-sub">
+              Kanal yang bisa dipakai untuk menghubungi:
+            </div>
+            <div class="contact-social">
+              <a class="contact-pill" href="https://www.instagram.com/pakipa29am" target="_blank" rel="noopener">
+                DM Instagram
+              </a>
+              <a class="contact-pill" href="https://www.facebook.com/stiven.g8" target="_blank" rel="noopener">
+                Facebook
+              </a>
+              <a class="contact-pill" href="https://pakipa29am.blogspot.com" target="_blank" rel="noopener">
+                Melalui komentar di Blog
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Muhamad Syifa AM · Personal Landing Page · Terhubung dari kampung ke dunia digital.
+  </footer>
+
+  <script>
+    // Set tahun otomatis
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
